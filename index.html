@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head charset="UTF-8">
+        <title>Fundamentos JS</title>
+    </head>
+    <body>
+        <script>
+            alert('Inicio');
+            // Imprime no console do navegador, modo inspeção
+            console.log('Fundamentos Aula #1');
+            // Variável
+            var nome = 'Roger Philippe';
+            console.log('Autor: '+nome);
+            // Constante
+            let pais = 'Brasil';
+            console.log('Pais: '+pais);
+            let cidade = 'Santo André';
+            let estado = 'SP';
+            // Utiliza-se apostrofos para utilizar vari-aveis/metodos dentro da string
+            console.log(`Cidade: ${cidade} - ${estado}`);
+            // Fatia string
+            console.log(cidade.slice(1, 3)); // print: San
+            // toUpperCase e demais métodos, semelhantes ao Java
+            // Operações matemáticas semelhantes ao C/Java
+            // Exponenciação utiliza ** exp: 5 ** 2 =  25
+            // If, switch case igual C/Java
+            // Operador ternário igual Java
+            //
+            // Array
+            var numeros = [1, 2, 3, 4, 5];
+            console.log(numeros);
+            console.log(`Posição 2: ${numeros[2]}`);
+            console.log(`Tamanho: ${numeros.length}`);
+            // Remove último elemento e retorna
+            console.log(numeros.pop);
+            // Retorna fatia do array utiliza-se slice, assim como para String
+            //
+            // join insere sepaardor no array
+            console.log(numeros.join('*')); // print: 1*2*3*4*5 | pode utilizar espaço
+            //
+            // Array com multiplos tipos
+            var usuario = ['Roger', 34, 'Programador', 'São Paulo'];
+            // Buscar valor no array,retorna booleano
+            console.log(`Exite nome Roger no array? ${usuario.includes('Roger')}`);
+            // Retorna posição no array caso encontre, caso contrario retorna -1
+            // array.indexOf('valor')
+            // Merge arrays
+            var mergeArray = numeros.concat(usuario);
+            console.log(mergeArray);
+            // Pode criar um array dentro do concat. Exp: array.concat([1, 2, 'tres'])
+            // É possivel passar varios array no concat. Exp: array.concat(arr1, arr2, [1, 2])
+            //
+            // É possivel criar array de array [[], [], []]
+            //
+            // Maneira nova de fazer merge array
+            // [...[], ...[]]
+            //
+            var user = ['Roger', 34, 'Santo andré'];
+            // Array destructuring - Criar variáveis e preenchelas com um array, note, o conteudo 
+            //a esquerda do sinal de igual NÃO é um array - outro detalhe legal, é possivel 
+            // imprimir variáveis de uma vez utilizando virgula
+            var [name, age, city] = user; // Pode pular uma posição. Exp: [name, , city] = user
+            console.log(name, age, city);
+            // while, do while e for igual C/Java
+            // Lembre-se, pode-se utilizar break e continue nos laços
+            // Exemplo for, semelhante ao Java para arrays
+            // for(var num of umArray) {}
+            // Array bidimencional igual Java
+            //
+            // Functions - Semelhante Java
+            function escrever() { console.log('Hello World!') };
+            escrever();
+            function escreverPassandoParametro(msg) { console.log(msg) };
+            escreverPassandoParametro('Hello Function with param');
+            function escreverPassandoParametros(msg1, msg2) { console.log(msg1,msg2) };
+            escreverPassandoParametros('Roger', 'Philippe');
+            // Com retorno
+            function soma(a, b) { return a+b};
+            console.log(`Soma: ${soma(2, 2)}`);
+            // Parametro rest, similar ao args Java
+            function escreveEnd(rua, cidade, ...compl) {} ;// compl é um array
+            // Função auto invocavél
+            (function autoExec(){ console.log('Que gambeta... :-(') }()); // Pode utilizar
+            // função anonima, sem nome
+            //
+            // Variável receber função.
+            var subtrai = function sub(a, b) {return a - b}; // Pode utilizar funcão anonima, 
+            // sem nome
+            console.log(subtrai(2, 3));
+            //
+            // Função call back, passando como parametro
+            function somaCallBack(a, b, fnCallBack) {
+                return fnCallBack(a + b);
+            };
+            somaCallBack(10, 3, function(total){ return total * 2});
+            // pode passar também como parametro, uma variavel função, como feito mais acima
+            //
+            // Valor default no parametro de uma função
+            function escreveUser(nome, idade = 'undefined') { console.log(nome, idade) };
+            escreveUser('Roger');
+            // Objetos
+            var usuarioObj = {
+                nome: 'Roger', idade: 34, funcao: 'Programador'
+            };
+            console.log(usuarioObj);
+            console.log(usuarioObj.nome);
+            console.log(usuarioObj['nome']);
+            // Adicionar elemento no objeto
+            usuarioObj.ano = 2020;
+            console.log(usuarioObj);
+            // Remover elemente
+            // delete objeto.elemento
+            // Um objeto pode receber também array, function...
+            usuarioObj.hobbies = ['Aviação', 'Eletrônica'];
+            usuarioObj.competencias = {
+                linguagens: ['Java', 'Kotlin'],
+                ferramentas: ['Android-Studio', 'IntelliJ']
+            };
+            var usuario2 = { id: 0, digaOi(name){ return `Olá ${name}`} };
+            console.log(usuario2.digaOi('Roger'))
+            // Merge de objetos
+            // var newObject = Object.assign({}, objectOne, objectTwo)
+            // Ou Object.assign(objectOne, objectTwo)
+            // Outra opção
+            // var novoObjeto = {...objetoUm, ...ObjetoDois};
+            // novoObjeto irá receber os parâmetros de ambos objetos
+            // Pode adicionar mais atributos separados por virgula. Exp. {...objeto, nome: ''};
+            // Para que novoObjeto contenha os dois objetos, retire os tres pontos
+            // É possivel definir nome de um atributo contido em uma variável
+            // Exemplo
+            let nomeVariavel = 'estado';
+            var usuario3 = {[nomeVariavel]: 'São Paulo'}
+            //
+            // Getters e Setters
+            var usuarios = [{nome: 'Roger'}, {nome: 'Ana'}, {nome: 'Clara'}]           
+            var umUsuario = {
+                posicao: 0,
+                get pegar() { return usuarios[this.posicao].nome },
+                set pegar(posicao) {this.posicao = posicao}
+            };
+            umUsuario.pegar = 1
+            console.log(`Primeiro: ${umUsuario.pegar}`)// Print Ana
+            //
+            // Destruct Object
+            var novoUsuario = {nome: 'Roger Philippe', idade: 34, uf: 'SP'}
+            var { nome, uf} = novoUsuario
+            console.log(nome, uf)
+            // Capturar variável de um objeto e adicionar em outra variável
+            var { idade: minhaIdade } = novoUsuario
+            console.log(minhaIdade)
+            // Extraindo do filho do objeto
+            var novoUsuario2 = {nome: {first: 'Roger Philippe', last: 'Pereira'}}
+            var {nome: {last}} = novoUsuario2
+            console.log(last)
+            // Definir valor default, caso não possua no objeto
+            var novoUsuario3 = {nome: 'Roger Philippe'}
+            var { last = 'undefined' } = novoUsuario3
+            console.log(last)
+            // Destruct como parâmetro
+            function nomeDoUsuario({nome}) {
+                console.log(nome)
+            }
+            var novoUsuario4 = {nome: 'Roger Philippe', sobreNome: 'Pereira'}
+            nomeDoUsuario(novoUsuario4)
+            // Chaves do objeto
+            console.log(Object.keys(novoUsuario4)) // Imprime o nome dos parâmetros do object
+            console.log(Object.values(novoUsuario4)) // Imprime todos os valores contidos no objeto
+            // Iteração
+            var atributos = Object.keys(novoUsuario4)
+            for (var atribute of atributos) {
+                console.log(novoUsuario4[atribute])
+            }
+            for (var atribute2 in novoUsuario4) {
+                console.log(novoUsuario4[atribute2]) // console.log(atribute2, novoUsuario4[atribute2])
+            }
+            // this
+            function novoUsuario5() {
+                this.nome = 'Roger Philippe';
+                this.soma = function(a, b) { return a+b; }
+            }
+            var novoUsuario55 = new novoUsuario5();
+            novoUsuario55.soma(1, 2)
+            //
+            function personagem() { console.log(this.nome) }
+            var personagemThis = { nome: 'Jiraia' }
+            personagem.call(personagemThis) // Caso a function personagem tenha parâmetros,
+            // deve-se parras com virgulas depois do this call(personagemThis, param1, param2)
+            personagem.apply(personagemThis) // No caso do apply, deve estar dentro de um array
+            // Exemplo: apply(personagemThis, [param1, param2])
+            // bind
+            personagem.bind(personagemThis) // Retorna a função, não invoca como os metodos 
+            //anteriores, pode armazenar em outra variável. var oneObject = objeto.bind(onbctThis)
+            //
+            // Arrow functions
+            var somaAgain = (a, b) => { return a+b; }
+            console.log(somaAgain(10, 10))
+            // arrow function de retorno imediato
+            var novoSomaAgain = (a, b) => a+b; // Pode retornar um objeto
+            console.log(novoSomaAgain(10, 11))
+        </script>
+    </body>
+</html>
