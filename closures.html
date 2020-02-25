@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head charset="UTF-8">
+        <title>Fundamentos JS</title>
+    </head>
+    <body>
+        <script>
+
+            function minhaBliblioteca() {
+                function auxiliar(value) { return value + 10 }
+                return {
+                    add5() { return auxiliar(5) },
+                    add7() { return auxiliar(7) }
+                }
+            }
+
+            var usaBiblioteca = minhaBliblioteca();
+            console.log(usaBiblioteca.add5())
+            console.log(usaBiblioteca.add7())
+
+            function imprimeNomeCompleto(nome) {
+                return function() {
+                    console.log(nome, 'Pereira')
+                }
+            }
+
+            function inicializa() {
+                let nome = 'Roger Philippe';
+                setTimeout(imprimeNomeCompleto(nome), 1000);
+            }
+
+            inicializa();
+
+        </script>
+    </body>
+</html>
