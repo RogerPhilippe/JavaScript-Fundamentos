@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head charset="UTF-8">
+        <title>Fundamentos JS</title>
+    </head>
+    <body>
+        <script>
+            // Consiste em chamar uma function antes da sua declaração
+            // Podendo retornar antes mesmo de ter sido criada.
+            function calcula() {
+                return geraResultado();
+
+                function soma(a, b) { return a + b; }
+                function geraResultado() { return soma(10, 5) / 3; }
+            }
+
+        </script>
+    </body>
+</html>

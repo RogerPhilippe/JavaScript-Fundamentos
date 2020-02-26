@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head charset="UTF-8">
+        <title>Fundamentos JS</title>
+    </head>
+    <body>
+        <script>
+
+            const numeros = [2, 3, 4, 5, 10];
+            let novoArrayNumeros = []
+
+            for (let i = 0; i < numeros.length; i++) {
+                novoArrayNumeros.push(numeros[i] * 2);
+            }
+
+            const novoArrayMap = numeros.map(function(numero) {
+                return numero * 2;
+            })
+
+            const arrayMapArrow = numeros.map(numero => numero * 2);
+
+            const nomes = ['Ayrton', 'Roger', 'Carolina'];
+
+            const nomesMinusculos = nomes.map(function(nome) {
+                return nome.toLocaleLowerCase;
+            })
+
+            // Mesma operação com arroyFunction
+            const nomesMinusculoscomArroyFunction = nomes.map(nome => nome.toLocaleLowerCase())
+
+            //
+
+            const numerosFiltrados = numeros.filter(function(numero) {
+                if (numero % 2 === 0) { return true}
+                else {return false}
+            })
+            // Refatoração 1
+            const numerosFiltrados2 = numeros.filter(function(numero) {
+                return numero % 2 === 0
+            })
+            // Refatoração 2
+            const numerosFiltrados3 = numeros.filter(numero => numero % 2 === 0)
+
+            // Combinação filter e map
+            const arrayMapFilter = numeros
+                .filter(numero => numero % 2 === 0)
+                .map(numero => numero * 2);
+
+            // Reduce
+            var somaReduce = numeros.reduce(function(acumulador, valorArray){
+                return acumulador + valorArray;
+            }, 0) // Zero é o valor inicial | Esse método retorna a soma dos valores do array
+            // Refatoração com arroyFunction
+            var somaReduce2 = numeros.reduce((acumulador, valorArray) => acumulador + valorArray, 0);
+
+            const pessoas = [
+                {
+                    nome: 'Roger',
+                    idade: 34
+                },
+                {
+                    nome: 'Amanda',
+                    idade: 30
+                },
+                {
+                    nome: 'Clara',
+                    idade: 12
+                },
+                {
+                    nome: 'Ana',
+                    idade: 14
+                },
+                {
+                    nome: 'Carlos',
+                    idade: 40
+                },
+                {
+                    nome: 'Ayrton',
+                    idade: 27
+                }
+            ];
+
+            pessoas.reduce(function(acumulador, valorArray) {
+
+                const propMaiorOuMenor = valorArray.idade >= 18? 'maiores' : 'menores'
+
+                acumulador[propMaiorOuMenor].push(valorArray);
+
+                return acumulador;
+
+            }, {maiores: [], menores: []})
+
+            // Saída, um objeto com dois arrais, com as pessoas maiores de idades, e menores separas.
+
+        </script>
+    </body>
+</html>
